@@ -1,6 +1,6 @@
 import { ArrowRight, Star } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
+import { Link } from 'react-router-dom';
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-white to-orange-50">
@@ -24,10 +24,10 @@ export function Hero() {
             </p>
             
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <button className="group inline-flex items-center justify-center gap-2 rounded-full bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-orange-700 hover:shadow-xl">
+              <Link to="/sellPage" className="group inline-flex items-center justify-center gap-2 rounded-full bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-orange-700 hover:shadow-xl">
                 Get Instant Access Now
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </button>
+              </Link>
               <p className="text-sm text-gray-500">
                 ⚡ Instant digital download • 60-day money-back guarantee
               </p>
