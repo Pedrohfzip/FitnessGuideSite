@@ -1,5 +1,5 @@
 import { Check, ArrowRight, Clock } from 'lucide-react';
-
+import { Link } from 'react-router-dom';
 export function Pricing() {
   return (
     <section className="py-20 bg-gradient-to-br from-orange-600 to-orange-700">
@@ -53,10 +53,10 @@ export function Pricing() {
           </div>
           
           {/* CTA */}
-          <button className="group w-full inline-flex items-center justify-center gap-2 rounded-full bg-orange-600 px-8 py-5 text-xl font-semibold text-white shadow-lg transition-all hover:bg-orange-700 hover:shadow-xl mb-6">
+          <Link to="/sellPage"  className="group w-full inline-flex items-center justify-center gap-2 rounded-full bg-orange-600 px-8 py-5 text-xl font-semibold text-white shadow-lg transition-all hover:bg-orange-700 hover:shadow-xl mb-6">
             Get Instant Access for $47
             <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
-          </button>
+          </Link>
           
           {/* Guarantee */}
           <div className="text-center space-y-4">

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createCheckoutSession } from '../api/checkoutApi';
 import { Check, X, Lock, Download, Star, Clock, ArrowRight, Shield, Zap, Trophy } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
@@ -38,7 +39,7 @@ export function CheckoutPage() {
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Urgency Banner */}
-        <div className="mb-8 rounded-2xl bg-gradient-to-r from-yellow-600 to-orange-600 p-6 text-center shadow-xl">
+        <div className="mb-8 rounded-2xl bg-orange-600 p-6 text-center shadow-xl">
           <div className="flex items-center justify-center gap-2 mb-2">
             <Clock className="h-6 w-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Special Offer Expires In:</h2>
@@ -189,7 +190,7 @@ export function CheckoutPage() {
             <div className="sticky top-24 space-y-6">
               {/* Package Selection */}
               <div className="rounded-2xl bg-white p-6 shadow-xl border-2 border-orange-200">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Choose Your Package:</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Pricing:</h3>
                 
                 {/* Complete Package */}
                 <button
@@ -202,7 +203,7 @@ export function CheckoutPage() {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <div className="inline-flex items-center gap-2 rounded-full bg-orange-600 px-3 py-1 mb-2">
+                      <div className="inline-flex items-center gap-2 rounded-full bg-orange-600 p-3 py-1 mb-2">
                         <Trophy className="h-4 w-4 text-white" />
                         <span className="text-xs font-bold text-white">BEST VALUE</span>
                       </div>
@@ -235,53 +236,8 @@ export function CheckoutPage() {
                   </div>
                 </button>
 
-                {/* Basic Package */}
-                <button
-                  onClick={() => setSelectedPackage('basic')}
-                  className={`w-full rounded-xl border-2 p-6 text-left transition-all ${
-                    selectedPackage === 'basic'
-                      ? 'border-orange-600 bg-orange-50'
-                      : 'border-gray-200 hover:border-orange-300'
-                  }`}
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h4 className="text-lg font-bold text-gray-900">Basic Package</h4>
-                      <p className="text-sm text-gray-600">Core Program Only</p>
-                    </div>
-                    <div className={`h-6 w-6 rounded-full border-2 flex items-center justify-center ${
-                      selectedPackage === 'basic' ? 'border-orange-600 bg-orange-600' : 'border-gray-300'
-                    }`}>
-                      {selectedPackage === 'basic' && <Check className="h-4 w-4 text-white" />}
-                    </div>
-                  </div>
-                  <div className="space-y-2 mb-3">
-                    {[
-                      '28-Day Workout Plan',
-                      'Basic Meal Guidelines',
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                        <Check className="h-4 w-4 text-green-600 flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                    {[
-                      'No Exercise Guide',
-                      'No Bonus Materials',
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm text-gray-400">
-                        <X className="h-4 w-4 flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold text-gray-900">$27</span>
-                    <span className="text-lg text-gray-500 line-through">$97</span>
-                  </div>
-                </button>
-              </div>
 
+              </div>
               {/* Order Summary */}
               <div className="rounded-2xl bg-white p-6 shadow-xl">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Order Summary</h3>
@@ -309,7 +265,12 @@ export function CheckoutPage() {
                 </div>
 
                 {/* CTA Button */}
-                <button className="w-full group rounded-xl bg-gradient-to-r from-orange-600 to-orange-700 px-8 py-5 text-lg font-bold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] mb-4">
+                <button
+                  className="w-full group rounded-xl bg-gradient-to-r from-orange-600 to-orange-700 px-8 py-5 text-lg font-bold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] mb-4"
+                  onClick={() => {
+                    window.location.href = 'https://buy.stripe.com/fZu8wO5gv83a3bkajdgnK00';
+                  }}
+                >
                   <div className="flex items-center justify-center gap-2">
                     <Lock className="h-5 w-5" />
                     <span>Complete Secure Checkout</span>
@@ -338,15 +299,31 @@ export function CheckoutPage() {
                 <p className="text-sm text-gray-600 mb-3">Trusted by 10,000+ customers</p>
                 <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
                   <div className="flex items-center gap-1">
-                    <div className="h-6 w-6 rounded bg-gray-300" />
+                    <span className="h-6 w-6 flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" rx="4" fill="#1A1F71"/>
+                        <text x="4" y="16" fontSize="10" fill="white" fontFamily="Arial">VISA</text>
+                      </svg>
+                    </span>
                     <span>Visa</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="h-6 w-6 rounded bg-gray-300" />
+                    <span className="h-6 w-6 flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" rx="4" fill="#F79E1B"/>
+                        <circle cx="8" cy="12" r="5" fill="#FF5F00"/>
+                        <circle cx="16" cy="12" r="5" fill="#EB001B"/>
+                      </svg>
+                    </span>
                     <span>Mastercard</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="h-6 w-6 rounded bg-gray-300" />
+                    <span className="h-6 w-6 flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" rx="4" fill="#003087"/>
+                        <text x="2" y="16" fontSize="10" fill="#FFC43A" fontFamily="Arial">PayPal</text>
+                      </svg>
+                    </span>
                     <span>PayPal</span>
                   </div>
                 </div>
